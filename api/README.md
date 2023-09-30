@@ -24,7 +24,7 @@ There are many more potential languages and frameworks to work in, but these are
 
 Just like any other a software application, an API should follow specific guidelines (as established by its associated engineering team) to not only make it easy for any developer to work in, but to also allow for any client to easily integrate with. While guidelines will vary on the engineering team, the following guidelines can serve as a good reference for any engineering team that might not otherwise know how to get started with best architecting an API project:
 
-1. Use forward slashes in the endpoint path to represent hierarchical relationships between resources/objects
+### 1. Use forward slashes in the endpoint path to represent hierarchical relationships between resources/objects
 
 To demonstrate this, let's consider a simplified example of [Amazon](amazon.com). On the back-end of Amazon, we have `Product`s that users can browse through, and for each product, users who have previously bought the product can leave `Review`s on these products. On the back-end, that would mean that there is a database relationship between a `Product` and a `Review`, where a specific record in the `reviews` table will have a foreign key called `product_id` that maps to a record in the `products` table.
 
@@ -36,7 +36,7 @@ Simply, we can use define following endpoint path:
 /products/{productId}/reviews
 ```
 
-2. When defining dynamic placeholders in an endpoint path, use camelCase
+### 2. When defining dynamic placeholders in an endpoint path, use camelCase
 
 Good:
 ```
@@ -48,7 +48,7 @@ Bad:
 /messages/{MessageID}
 ```
 
-3. Use lower-case letters when defining endpoint paths
+### 3. Use lower-case letters when defining endpoint paths
 
 Good:
 ```
