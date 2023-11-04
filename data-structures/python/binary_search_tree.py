@@ -53,6 +53,27 @@ class BinarySearchTree:
         self.print_in_order(node.right)
 
 
+    def print_in_order_iterative(self):        
+        if not self.root:
+            return None
+
+        stack = []
+        values = []
+
+        node = self.root
+        while stack or node:
+            if node:
+                stack.append(node)
+                node = node.left
+            else:
+                node = stack.pop()
+                values.append(node.val)
+                node = node.right
+
+        for value in values:
+            print(value)
+
+
     def print_preorder(self, node):
         if not node:
             return None
@@ -66,25 +87,17 @@ class BinarySearchTree:
         if not self.root:
             return None
         
-        values = []
-        stack = []
-
-        node = self.root
-
-        stack.insert(0, node)
+        stack = [self.root]
 
         while stack:
-            node = stack.pop(0)
-            values.append(node.val)
+            node = stack.pop()
+            print(node.val)
 
             if node.right:
-                stack.insert(0, node.right)
+                stack.append(node.right)
 
             if node.left:
-                stack.insert(0, node.left)
-
-        for value in values:
-            print(value)
+                stack.append(node.left)
 
  
     def print_postorder(self, node):
