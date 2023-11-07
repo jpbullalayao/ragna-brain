@@ -4,14 +4,6 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-        self.insert(5)
-        self.insert(2, self.root)
-        self.insert(7, self.root)
-        self.insert(1, self.root)
-        self.insert(3, self.root)
-        self.insert(6, self.root)
-        self.insert(8, self.root)
-
     # Duplicate values get inserted to right of node
     def insert(self, val, node = None):
         if not node:
