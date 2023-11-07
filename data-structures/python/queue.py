@@ -2,8 +2,9 @@ from node import Node
 
 from interfaces.findable import Findable
 from interfaces.printable import Printable
+from interfaces.sizable import Sizable
 
-class Queue(Findable, Printable):
+class Queue(Findable, Printable, Sizable):
     def __init__(self, val = None):
         self.head = None
         self.tail = None

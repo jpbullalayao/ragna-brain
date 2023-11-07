@@ -1,21 +1,11 @@
 from bst_node import BSTNode
 
 from queue import Queue
+from stack import Stack
 
-#      5
-#   2     7
-# 1  3  6  8
 class BinarySearchTree:
     def __init__(self):
         self.root = None
-
-        self.insert(5)
-        self.insert(2, self.root)
-        self.insert(7, self.root)
-        self.insert(1, self.root)
-        self.insert(3, self.root)
-        self.insert(6, self.root)
-        self.insert(8, self.root)
 
     # Duplicate values get inserted to right of node
     def insert(self, val, node = None):
@@ -51,16 +41,16 @@ class BinarySearchTree:
         if not self.root:
             return None
 
-        stack = []
+        stack = Stack()
         values = []
 
         node = self.root
-        while stack or node:
+        while stack.size() > 0 or node:
             if node:
-                stack.append(node)
+                stack.push(node)
                 node = node.left
             else:
-                node = stack.pop()
+                node = stack.pop().val
                 values.append(node.val)
                 node = node.right
 
@@ -80,18 +70,18 @@ class BinarySearchTree:
     def print_preorder_iterative(self):
         if not self.root:
             return None
-        
-        stack = [self.root]
 
-        while stack:
-            node = stack.pop()
+        stack = Stack(self.root)
+
+        while stack.size() > 0:
+            node = stack.pop().val
             print(node.val)
 
             if node.right:
-                stack.append(node.right)
+                stack.push(node.right)
 
             if node.left:
-                stack.append(node.left)
+                stack.push(node.left)
 
  
     def print_postorder(self, node):
@@ -106,20 +96,20 @@ class BinarySearchTree:
     def print_postorder_iterative(self):
         if not self.root:
             return None
-        
-        stack = [self.root]
+
+        stack = Stack(self.root)
         values = []
 
-        while stack:
-            node = stack.pop()
+        while stack.size() > 0:
+            node = stack.pop().val
 
             values = [node.val] + values
             
             if node.left:
-                stack.append(node.left)
+                stack.push(node.left)
 
             if node.right:
-                stack.append(node.right)
+                stack.push(node.right)
 
         for value in values:
             print(value)
@@ -132,7 +122,6 @@ class BinarySearchTree:
         queue = Queue(self.root)
 
         while queue.size() > 0:
-            # Queue stores a node in "val" containing 
             node = queue.dequeue().val
 
             print(node.val)

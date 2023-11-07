@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Sizeable(ABC):
+class Sizable(ABC):
     @abstractmethod
     def size(self):
         pass
