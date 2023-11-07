@@ -1,8 +1,19 @@
 from bst_node import BSTNode
 
+#      5
+#   2     7
+# 1  3  6  8
 class BinarySearchTree:
     def __init__(self):
         self.root = None
+
+        self.insert(5)
+        self.insert(2, self.root)
+        self.insert(7, self.root)
+        self.insert(1, self.root)
+        self.insert(3, self.root)
+        self.insert(6, self.root)
+        self.insert(8, self.root)
 
     # Duplicate values get inserted to right of node
     def insert(self, val, node = None):
@@ -111,6 +122,24 @@ class BinarySearchTree:
         for value in values:
             print(value)
 
+
+    def print_breadth_first(self):
+        if not self.root:
+            return None
+
+        queue = [self.root]
+
+        while queue:
+            node = queue.pop(0)
+
+            print(node.val)
+
+            if node.left:
+                queue.append(node.left)
+            
+            if node.right:
+                queue.append(node.right)
+        
 
     def find(self, node, val):
         if not node:
