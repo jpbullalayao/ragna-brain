@@ -1,16 +1,5 @@
 from bst_node import BSTNode
 
-from stack import Stack
-
-#      5
-#   2        7
-# 1   3    6   8
-#
-#
-
-# stack: []
-# values: 
-
 class BinarySearchTree:
     def __init__(self):
         self.root = None
@@ -107,6 +96,28 @@ class BinarySearchTree:
         self.print_postorder(node.left)
         self.print_postorder(node.right)
         print(node.val)
+
+
+    def print_postorder_iterative(self):
+        if not self.root:
+            return None
+        
+        stack = [self.root]
+        values = []
+
+        while stack:
+            node = stack.pop()
+
+            values = [node.val] + values
+            
+            if node.left:
+                stack.append(node.left)
+
+            if node.right:
+                stack.append(node.right)
+
+        for value in values:
+            print(value)
 
 
     def find(self, node, val):
