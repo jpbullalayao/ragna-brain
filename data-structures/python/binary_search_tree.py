@@ -1,5 +1,8 @@
 from bst_node import BSTNode
 
+from queue import Queue
+from stack import Stack
+
 class BinarySearchTree:
     def __init__(self):
         self.root = None
@@ -38,16 +41,16 @@ class BinarySearchTree:
         if not self.root:
             return None
 
-        stack = []
+        stack = Stack()
         values = []
 
         node = self.root
-        while stack or node:
+        while stack.size() > 0 or node:
             if node:
-                stack.append(node)
+                stack.push(node)
                 node = node.left
             else:
-                node = stack.pop()
+                node = stack.pop().val
                 values.append(node.val)
                 node = node.right
 
@@ -67,18 +70,18 @@ class BinarySearchTree:
     def print_preorder_iterative(self):
         if not self.root:
             return None
-        
-        stack = [self.root]
 
-        while stack:
-            node = stack.pop()
+        stack = Stack(self.root)
+
+        while stack.size() > 0:
+            node = stack.pop().val
             print(node.val)
 
             if node.right:
-                stack.append(node.right)
+                stack.push(node.right)
 
             if node.left:
-                stack.append(node.left)
+                stack.push(node.left)
 
  
     def print_postorder(self, node):
@@ -93,23 +96,41 @@ class BinarySearchTree:
     def print_postorder_iterative(self):
         if not self.root:
             return None
-        
-        stack = [self.root]
+
+        stack = Stack(self.root)
         values = []
 
-        while stack:
-            node = stack.pop()
+        while stack.size() > 0:
+            node = stack.pop().val
 
             values = [node.val] + values
             
             if node.left:
-                stack.append(node.left)
+                stack.push(node.left)
 
             if node.right:
-                stack.append(node.right)
+                stack.push(node.right)
 
         for value in values:
             print(value)
+
+
+    def print_breadth_first(self):
+        if not self.root:
+            return None
+
+        queue = Queue(self.root)
+
+        while queue.size() > 0:
+            node = queue.dequeue().val
+
+            print(node.val)
+
+            if node.left:
+                queue.enqueue(node.left)
+            
+            if node.right:
+                queue.enqueue(node.right)
 
 
     def find(self, node, val):
