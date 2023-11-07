@@ -135,16 +135,18 @@ class BinarySearchTree:
 
     def find(self, node, val):
         if not node:
-            return None
+            return False
         
         if node.val == val:
-            return node
+            return True
 
         if node.val < val:
             if not node.right:
-                return None
+                return False
 
             return self.find(node.right, val)
         else:
             if not node.left:
-                return None
+                return False
+            
+            return self.find(node.left, val)
