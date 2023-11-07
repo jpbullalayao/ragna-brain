@@ -1,5 +1,7 @@
 from bst_node import BSTNode
 
+from queue import Queue
+
 #      5
 #   2     7
 # 1  3  6  8
@@ -127,19 +129,20 @@ class BinarySearchTree:
         if not self.root:
             return None
 
-        queue = [self.root]
+        queue = Queue(self.root)
 
-        while queue:
-            node = queue.pop(0)
+        while queue.size() > 0:
+            # Queue stores a node in "val" containing 
+            node = queue.dequeue().val
 
             print(node.val)
 
             if node.left:
-                queue.append(node.left)
+                queue.enqueue(node.left)
             
             if node.right:
-                queue.append(node.right)
-        
+                queue.enqueue(node.right)
+
 
     def find(self, node, val):
         if not node:
